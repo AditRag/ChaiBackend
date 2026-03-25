@@ -102,7 +102,7 @@ const loginUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
 
   // check username or email
-  if (!username || !eamil) {
+  if (!(username || !eamil)) {
     throw new ApiError(400, "All fields are required");
   }
 
@@ -159,7 +159,8 @@ const loginUser = asyncHandler(async (req, res) => {
 
 const logoutUser = asyncHandler(async(req,res) => {
     User.findByIdAndUpdate(
-        req.user._id{
+        req.user._id,
+        {
             $set:{
                 refreshToken: ""
             }
