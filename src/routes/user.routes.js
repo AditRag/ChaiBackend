@@ -9,4 +9,8 @@ router.route("/register").post(upload.fields([
     { name: "coverImage", maxCount: 1 }
 ]), registerUser)
 
+
+//secured routes
+router.route("/logout").post(verifyJWT, logoutUser)
+
 export default router
